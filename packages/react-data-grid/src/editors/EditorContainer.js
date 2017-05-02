@@ -262,6 +262,7 @@ const EditorContainer = React.createClass({
   },
 
   setTextInputFocus() {
+    return;
     let selected = this.props.cellMetaData.selected;
     let keyCode = selected.initialKeyCode;
     let inputNode = this.getInputNode();

@@ -31,6 +31,7 @@ const focusableComponentWrapper = WrappedComponent => {
       }
 
       checkFocus() {
+        return;
         if (WrappedComponent.isSelected(this.props) && this.state.isScrolling) {
           this.focus();
           this.setState({isScrolling: false});
@@ -38,6 +39,7 @@ const focusableComponentWrapper = WrappedComponent => {
       }
 
       focus() {
+        return;
         ReactDOM.findDOMNode(this).focus();
       }
 
