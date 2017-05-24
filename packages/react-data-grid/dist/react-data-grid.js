@@ -8177,7 +8177,10 @@ return /******/ (function(modules) { // webpackBootstrap
 	    return document.activeElement && document.activeElement.className === 'react-grid-Cell';
 	  },
 	  checkFocus: function checkFocus() {
-	    return;
+	    if (this.props.cellMetaData.disableKeyboardEvents === true) {
+	      return;
+	    }
+
 	    if (this.isSelected() && !this.isActive()) {
 	      if (this.props.isScrolling && !this.props.cellMetaData.isScrollingVerticallyWithKeyboard && !this.props.cellMetaData.isScrollingHorizontallyWithKeyboard) {
 	        return;
@@ -8455,8 +8458,13 @@ return /******/ (function(modules) { // webpackBootstrap
 	'use strict';
 
 	var KeyboardHandlerMixin = {
+	  isDisabled: function isDisabled() {
+	    return this.props.disableKeyboardEvents === true;
+	  },
 	  onKeyDown: function onKeyDown(e) {
-	    return;
+	    if (this.isDisabled()) {
+	      return;
+	    }
 	    if (this.isCtrlKeyHeldDown(e)) {
 	      this.checkAndCall('onPressKeyWithCtrl', e);
 	    } else if (this.isKeyExplicitlyHandled(e.key)) {
@@ -8476,7 +8484,9 @@ return /******/ (function(modules) { // webpackBootstrap
 	    }
 	  },
 	  onKeyUp: function onKeyUp(e) {
-	    return;
+	    if (this.isDisabled()) {
+	      return;
+	    }
 	    // Track which keys are currently down for shift clicking etc
 	    this._keysDown = this._keysDown || {};
 	    delete this._keysDown[e.keyCode];
@@ -10440,6 +10450,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	  mixins: [ColumnMetricsMixin, DOMMetrics.MetricsComputatorMixin, KeyboardHandlerMixin],
 
 	  propTypes: {
+	    disableKeyboardEvents: React.PropTypes.bool,
 	    rowHeight: React.PropTypes.number.isRequired,
 	    headerRowHeight: React.PropTypes.number,
 	    headerFiltersHeight: React.PropTypes.number,
@@ -10500,6 +10511,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	  getDefaultProps: function getDefaultProps() {
 	    return {
+	      disableKeyboardEvents: true,
 	      enableCellSelect: false,
 	      tabIndex: -1,
 	      rowHeight: 35,
@@ -11301,6 +11313,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	    var _this7 = this;
 
 	    var cellMetaData = {
+	      disableKeyboardEvents: this.props.disableKeyboardEvents,
 	      selected: this.state.selected,
 	      dragged: this.state.dragged,
 	      hoveredRowIdx: this.state.hoveredRowIdx,
@@ -11516,7 +11529,6 @@ return /******/ (function(modules) { // webpackBootstrap
 	  };
 
 	  RowGroup.prototype.checkFocus = function checkFocus() {
-	    return;
 	    if (this.isSelected()) {
 	      _reactDom2['default'].findDOMNode(this).focus();
 	    }
@@ -12311,7 +12323,6 @@ return /******/ (function(modules) { // webpackBootstrap
 	    }
 	  },
 	  setTextInputFocus: function setTextInputFocus() {
-	    return;
 	    var selected = this.props.cellMetaData.selected;
 	    var keyCode = selected.initialKeyCode;
 	    var inputNode = this.getInputNode();
@@ -12429,7 +12440,6 @@ return /******/ (function(modules) { // webpackBootstrap
 	    };
 
 	    ComponentWrapper.prototype.checkFocus = function checkFocus() {
-	      return;
 	      if (WrappedComponent.isSelected(this.props) && this.state.isScrolling) {
 	        this.focus();
 	        this.setState({ isScrolling: false });
@@ -12437,7 +12447,6 @@ return /******/ (function(modules) { // webpackBootstrap
 	    };
 
 	    ComponentWrapper.prototype.focus = function focus() {
-	      return;
 	      _reactDom2['default'].findDOMNode(this).focus();
 	    };
 

@@ -356,7 +356,10 @@ const Cell = React.createClass({
   },
 
   checkFocus() {
-    return;
+    if (this.props.cellMetaData.disableKeyboardEvents === true) {
+      return;
+    }
+
     if (this.isSelected() && !this.isActive()) {
       if (this.props.isScrolling && !this.props.cellMetaData.isScrollingVerticallyWithKeyboard && !this.props.cellMetaData.isScrollingHorizontallyWithKeyboard) {
         return;

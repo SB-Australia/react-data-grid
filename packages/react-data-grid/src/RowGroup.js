@@ -73,7 +73,6 @@ class RowGroup extends Component {
   }
 
   checkFocus() {
-    return;
     if (this.isSelected()) {
       ReactDOM.findDOMNode(this).focus();
     }

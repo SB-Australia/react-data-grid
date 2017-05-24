@@ -1,6 +1,11 @@
 let KeyboardHandlerMixin = {
+  isDisabled() {
+    return this.props.disableKeyboardEvents === true;
+  },
   onKeyDown(e: SyntheticKeyboardEvent) {
-    return;
+    if (this.isDisabled()) {
+      return;
+    }
     if (this.isCtrlKeyHeldDown(e)) {
       this.checkAndCall('onPressKeyWithCtrl', e);
     } else if (this.isKeyExplicitlyHandled(e.key)) {
@@ -21,7 +26,9 @@ let KeyboardHandlerMixin = {
   },
 
   onKeyUp(e) {
-    return;
+    if (this.isDisabled()) {
+      return;
+    }
     // Track which keys are currently down for shift clicking etc
     this._keysDown = this._keysDown || {};
     delete this._keysDown[e.keyCode];

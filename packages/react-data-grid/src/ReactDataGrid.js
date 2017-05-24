@@ -50,6 +50,7 @@ const ReactDataGrid = React.createClass({
   ],
 
   propTypes: {
+    disableKeyboardEvents: React.PropTypes.bool,
     rowHeight: React.PropTypes.number.isRequired,
     headerRowHeight: React.PropTypes.number,
     headerFiltersHeight: React.PropTypes.number,
@@ -114,6 +115,7 @@ const ReactDataGrid = React.createClass({
 
   getDefaultProps(): {enableCellSelect: boolean} {
     return {
+      disableKeyboardEvents: true,
       enableCellSelect: false,
       tabIndex: -1,
       rowHeight: 35,
@@ -878,6 +880,7 @@ const ReactDataGrid = React.createClass({
 
   render() {
     let cellMetaData = {
+      disableKeyboardEvents: this.props.disableKeyboardEvents,
       selected: this.state.selected,
       dragged: this.state.dragged,
       hoveredRowIdx: this.state.hoveredRowIdx,
