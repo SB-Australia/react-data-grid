@@ -8033,7 +8033,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	    }
 	  },
 	  getCellClass: function getCellClass() {
-	    var className = joinClasses(this.props.column.cellClass, 'react-grid-Cell', this.props.className, this.props.column.locked ? 'react-grid-Cell--locked' : null);
+	    var className = joinClasses(this.props.column.cellClass, 'react-grid-Cell', this.props.className, this.props.cellMetaData.outlineCells ? 'react-grid-Cell--outline' : null, this.props.column.locked ? 'react-grid-Cell--locked' : null);
 	    var extraClasses = joinClasses({
 	      'row-selected': this.props.isRowSelected,
 	      editing: this.isActive(),
@@ -10471,6 +10471,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	    onDragHandleDoubleClick: React.PropTypes.func,
 	    onGridRowsUpdated: React.PropTypes.func,
 	    onRowSelect: React.PropTypes.func,
+	    outlineCells: React.PropTypes.bool,
 	    rowKey: React.PropTypes.string,
 	    rowScrollTimeout: React.PropTypes.number,
 	    onClearFilters: React.PropTypes.func,
@@ -10518,6 +10519,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	      headerFiltersHeight: 45,
 	      enableRowSelect: false,
 	      minHeight: 350,
+	      outlineCells: false,
 	      rowKey: 'id',
 	      rowScrollTimeout: 0,
 	      cellNavigationMode: 'none',
@@ -11322,6 +11324,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	      onCellDoubleClick: this.onCellDoubleClick,
 	      onCommit: this.onCellCommit,
 	      onCommitCancel: this.setInactive,
+	      outlineCells: this.props.outlineCells,
 	      copied: this.state.copied,
 	      handleDragEnterRow: this.handleDragEnter,
 	      handleTerminateDrag: this.handleTerminateDrag,

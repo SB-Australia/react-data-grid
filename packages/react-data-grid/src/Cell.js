@@ -178,6 +178,7 @@ const Cell = React.createClass({
       this.props.column.cellClass,
       'react-grid-Cell',
       this.props.className,
+      this.props.cellMetaData.outlineCells ? 'react-grid-Cell--outline' : null,
       this.props.column.locked ? 'react-grid-Cell--locked' : null
     );
     let extraClasses = joinClasses({
